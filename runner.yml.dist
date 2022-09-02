@@ -18,6 +18,11 @@ drupal:
       file_scan_ignore_directories:
         - "vendor"
         - "${drupal.root}"
+    aditional_settings:
+      if (!empty(getenv('DASHBOARD_TOKEN'))) {
+        $settings["oe_dashboard_agent.token"] = getenv('DASHBOARD_TOKEN');
+        $settings["oe_dashboard_agent.allowed_ips"] = explode(',', getenv('DASHBOARD_ALLOWED_IPS'));
+      }
 
 commands:
   drupal:site-setup:

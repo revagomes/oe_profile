@@ -1,4 +1,4 @@
-.PHONY: up stop setup site-install in clean
+.PHONY: up stop setup si in clean
 
 
 up:
@@ -10,7 +10,7 @@ stop:
 setup:
 	docker-compose exec web composer install
 
-site-install:
+si:
 	docker-compose exec web vendor/bin/run drupal:site-install
 
 in:
@@ -18,3 +18,6 @@ in:
 
 clean:
 	docker-compose stop && docker-compose rm
+
+otp: 
+	docker-compose exec web drush uli
